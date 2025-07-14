@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brisk Teaching: 초등학교 교사를 위한 AI 수업 보조 도구 활용 연수</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+    <style>
+        /* 기본 폰트 및 색상 설정 */
+        body {
+            font-family: 'Pretendard', sans-serif;
+            color: #1e3a8a; /* 기본 군청색 */
+            scroll-behavior: smooth;
+        }
+        /* 스크롤바 디자인 (선택사항) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0d9488; /* Teal-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0f766e; /* Teal-700 */
+        }
+        /* 제목 태그에 ID 자동 생성을 위한 스타일 */
+        h2, h3 {
+            scroll-margin-top: 80px; /* 고정 네비게이션바 높이만큼 여백 */
+        }
+    </style>
+</head>
+<body class="bg-slate-50">
+
+    <header id="main-header" class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-md transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center space-x-3">
+                    <svg class="h-8 w-8 text-teal-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.375a6.375 6.375 0 006.375-6.375h.038a6.375 6.375 0 00-6.375-6.375A6.375 6.375 0 005.625 12h.038a6.375 6.375 0 006.337 6.375zM12 18.375a6.375 6.375 0 01-6.375-6.375h-.038a6.375 6.375 0 016.375-6.375A6.375 6.375 0 0118.375 12h-.038a6.375 6.375 0 01-6.337 6.375z" />
+                    </svg>
+                    <span class="text-xl font-bold text-teal-700">Brisk Teaching 연수</span>
+                </div>
+                
+                <nav class="hidden lg:flex items-center space-x-1" id="nav-menu"></nav>
+
+                <div class="lg:hidden">
+                    <button id="mobile-menu-button" class="text-teal-700 hover:text-teal-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-lg">
+            <nav class="flex flex-col p-4 space-y-2" id="mobile-nav-menu"></nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+        <section class="text-center py-16">
+            <span class="text-teal-600 font-semibold">초등학교 교사를 위한 AI 수업 보조 도구</span>
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-800 mt-2 mb-4">
+                Brisk Teaching 활용 연수
+            </h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">"미래 교육을 선도하는 교사들의 필수 도구, Brisk와 함께 수업을 혁신하고 시간을 되찾으세요."</p>
+        </section>
+
+        <div id="toc-section" class="bg-sky-50 border border-sky-200 rounded-xl p-6 mb-16">
+            <h2 class="text-2xl font-bold text-sky-800 mb-4 flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+                오늘 우리는 무엇을 배울까요?
+            </h2>
+            <ul id="toc-list" class="space-y-2 text-lg">
+                </ul>
+        </div>
+
+
+        <section id="intro">
+            <h2 class="text-3xl font-bold mt-12 mb-6 pb-3 border-b-4 border-teal-200">👋 Brisk Teaching 소개</h2>
+            <div class="grid md:grid-cols-2 gap-8 items-center">
+                <div class="space-y-4 text-lg">
+                    <p>Brisk Teaching은 교사분들의 수업 준비, 피드백, 차별화된 학습 지원을 돕는 <strong class="text-orange-600">강력한 AI 보조 도구</strong>입니다.</p>
+                    <p>별도의 프로그램 설치 없이, 현재 사용하시는 <strong class="text-orange-600">크롬(Chrome) 및 엣지(Edge) 브라우저</strong>에 확장 프로그램으로 간단히 추가하여 바로 사용할 수 있습니다.</p>
+                </div>
+                <div class="bg-teal-50 border-l-4 border-teal-500 p-6 rounded-lg">
+                    <h3 class="font-bold text-xl text-teal-800 mb-2">핵심 가치</h3>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> 모든 교사와 학생에게 <strong class="font-semibold">무료</strong>로 제공됩니다.</li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> 학생에게 <strong class="font-semibold">안전한 AI 환경</strong>을 보장하며, 20,000개 이상의 학군에서 신뢰받고 있습니다.</li>
+                        <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> 교사의 업무 부담을 줄여 <strong class="font-semibold">교육의 질</strong>을 높이는 것을 목표로 합니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="why">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">🤔 왜 Brisk Teaching인가?</h2>
+            <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-3">⏳ 선생님의 시간 절약</h3>
+                    <p class="mb-4">수업 계획, 자료 제작, 과제 피드백 등 반복적인 업무를 자동화하여 선생님의 소중한 시간을 아껴드립니다.</p>
+                    <div class="bg-orange-100 text-orange-800 p-3 rounded-md text-center font-medium">"클릭 한 번으로 내일 수업 계획 끝!"</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-3">🔗 기존 도구와의 통합</h3>
+                    <p class="mb-4">Google Docs, PDF, 온라인 교과서 등 이미 사용하시던 도구 위에서 바로 작동하여 새로운 플랫폼을 배울 필요가 없습니다.</p>
+                     <div class="bg-sky-100 text-sky-800 p-3 rounded-md text-center font-medium">"추가적인 복잡성 없이, 완벽한 지원"</div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold mb-3">🎯 개별화된 학습 지원</h3>
+                    <p class="mb-4">50개 이상의 언어 지원과 텍스트 수준 변경 기능으로 모든 학생에게 꼭 맞는 맞춤형 학습 자료를 제공할 수 있습니다.</p>
+                    <div class="bg-teal-100 text-teal-800 p-3 rounded-md text-center font-medium">"모든 학생을 위한 맞춤 교육 실현"</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">✨ 주요 AI 기능 살펴보기</h2>
+            
+            <h3 id="how-it-works" class="text-2xl font-semibold mb-6">⚙️ 어떻게 작동하나요? (설치 및 시작)</h3>
+            <div class="flex flex-col md:flex-row gap-8 bg-white p-8 rounded-xl shadow-md mb-12">
+                <div class="flex-1 space-y-3">
+                    <p><strong class="text-orange-600">1. 간단한 설치:</strong> 크롬 또는 엣지 웹 스토어에서 'Brisk Teaching'을 검색하여 확장 프로그램을 추가하고 툴바에 고정하세요.</p>
+                    <p><strong class="text-orange-600">2. Brisk "B" 아이콘 클릭:</strong> Google Docs, 웹사이트, PDF 등 어디서든 우측 하단에 나타나는 'B' 아이콘을 클릭하면 Brisk의 마법이 시작됩니다.</p>
+                </div>
+                <div class="flex-1 bg-sky-50 p-6 rounded-lg text-center flex flex-col justify-center items-center">
+                    <img src="https://lh3.googleusercontent.com/4f8OQpB2AjO2g2g_O_DEb2jSND03Gg2_T2WjR_I91pGgY2-VqQc-39I-m-jO3-nC3s-LAvM2Jg4=s128" alt="Brisk Icon" class="h-16 w-16 mb-3">
+                    <p class="text-sky-800 font-semibold">"몇 초 만에 설치하고 일 년 내내 감사할 것입니다."</p>
+                </div>
+            </div>
+            
+            <h3 id="core-functions" class="text-2xl font-semibold mb-6">🕹️ 핵심 기능 자세히 보기 (클릭하여 확인)</h3>
+            <div class="space-y-4">
+                <div class="accordion-item bg-white rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 rounded-t-lg transition">
+                        <span>1️⃣ 콘텐츠 생성 (Create content)</span>
+                        <span class="accordion-icon text-teal-600 font-bold text-2xl">+</span>
+                    </button>
+                    <div class="accordion-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-4">프레젠테이션, 퀴즈, 수업 계획, 루브릭 등 다양한 수업 자료를 몇 번의 클릭만으로 생성합니다.</p>
+                        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-md">
+                            <h4 class="font-bold text-teal-800 mb-2">💡 초등학교 활용 팁</h4>
+                            <ul class="list-none space-y-2">
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">맞춤 수학 문제:</strong> 학생 수준에 맞는 단어 문제를 만들어 게임 기반 학습(예: Prodigy)과 연계해요.</li>
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">탐구 워크시트:</strong> 학생들이 스스로 질문하고 탐색하며 문제 해결 능력을 키우도록 유도해요.</li>
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">재미있는 퀴즈:</strong> 퀴즈 제작기로 배운 내용을 즐겁게 복습하고 이해도를 확인해요.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 rounded-t-lg transition">
+                        <span>2️⃣ 피드백 제공 (Give feedback)</span>
+                        <span class="accordion-icon text-teal-600 font-bold text-2xl">+</span>
+                    </button>
+                    <div class="accordion-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-4">학생들의 Google Docs 과제에 '칭찬과 개선점(Glow & Grow)', '다음 단계(Next Steps)' 등 고품질의 개인화된 피드백을 직접, 그리고 "몇 분 안에" 작성해줍니다.</p>
+                        <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-md">
+                            <h4 class="font-bold text-teal-800 mb-2">💡 초등학교 활용 팁</h4>
+                             <ul class="list-none space-y-2">
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">동기 부여 피드백:</strong> "선생님은 너를 믿기 때문에 이 피드백을 주는 거야!" 와 같은 멘토의 마음으로 격려하여 학생의 학습 의지를 북돋워요.</li>
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">자존감 향상:</strong> 빠르고 구체적인 피드백으로 학생의 노력을 인정해주고 자존감을 높여줘요.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 rounded-t-lg transition">
+                        <span>3️⃣ 쓰기 분석 (Inspect writing)</span>
+                        <span class="accordion-icon text-teal-600 font-bold text-2xl">+</span>
+                    </button>
+                    <div class="accordion-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-4">학생이 과제를 작성한 전체 과정을 비디오처럼 재생하여 사고 과정과 글쓰기 습관을 파악하고 더 효과적으로 지도할 수 있습니다.</p>
+                         <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-md">
+                            <h4 class="font-bold text-teal-800 mb-2">💡 초등학교 활용 팁</h4>
+                             <ul class="list-none space-y-2">
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">과정 중심 지도:</strong> 결과물만이 아닌, 글쓰기 과정을 보며 어떤 부분에서 어려움을 느끼는지 파악하고 도와줘요.</li>
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">개별 쓰기 전략 지원:</strong> 학생의 글쓰기 습관을 이해하고 꼭 필요한 맞춤형 조언을 제공해요.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 rounded-t-lg transition">
+                        <span>4️⃣ 수준 변경 (Change levels)</span>
+                        <span class="accordion-icon text-teal-600 font-bold text-2xl">+</span>
+                    </button>
+                    <div class="accordion-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-4">어려운 온라인 텍스트나 기사를 학생들의 읽기 수준에 맞게 쉬운 버전으로 바꾸거나, 50개 이상의 언어로 번역할 수 있습니다.</p>
+                         <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-md">
+                            <h4 class="font-bold text-teal-800 mb-2">💡 초등학교 활용 팁</h4>
+                             <ul class="list-none space-y-2">
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">차별화된 읽기 자료:</strong> 같은 주제의 글을 수준별로 제공하여 모든 학생이 학습에 성공하는 경험을 하도록 도와요.</li>
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">다문화 학생 지원:</strong> 한국어가 서툰 학생을 위해 자료를 모국어로 번역하여 학습 소외를 방지해요.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item bg-white rounded-lg shadow-sm">
+                    <button class="accordion-header w-full flex justify-between items-center text-left p-5 font-semibold text-xl hover:bg-slate-50 rounded-t-lg transition">
+                        <span>5️⃣ 활동 부스트 (Boost activities)</span>
+                        <span class="accordion-icon text-teal-600 font-bold text-2xl">+</span>
+                    </button>
+                    <div class="accordion-content hidden p-6 border-t border-slate-200">
+                        <p class="mb-4">평범한 온라인 자료(교과서, PDF 등)를 퀴즈, 게임 등 학생들이 직접 참여하는 대화형 학습 경험으로 바꾸어 수업을 더욱 생생하게 만듭니다.</p>
+                         <div class="bg-teal-50 border-l-4 border-teal-500 p-4 rounded-md">
+                            <h4 class="font-bold text-teal-800 mb-2">💡 초등학교 활용 팁</h4>
+                             <ul class="list-none space-y-2">
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">온라인 자료의 변신:</strong> 정적인 PDF 파일도 재미있는 퀴즈와 질문이 가득한 활동으로 바꿔요.</li>
+                                <li class="flex items-start"><span class="text-teal-600 mr-2">✅</span> <strong class="font-semibold">호기심 자극:</strong> 학생들의 호기심과 참여를 높여 수동적인 학습에서 능동적인 학습으로 전환시켜요.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section id="motivation">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">🌱 학생 동기 부여 및 학습 촉진</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <h3 id="intrinsic-motivation" class="text-xl font-semibold mb-3">Brisk와 내재적 동기 (자기결정이론)</h3>
+                    <p class="mb-4">심리학의 <strong class="text-orange-600">자기결정이론</strong>에 따르면 <strong class="text-orange-600">'자율성', '유능감', '관계성'</strong>의 욕구가 충족될 때 학생들은 스스로 공부하려는 내재적 동기를 갖게 됩니다.</p>
+                    <div class="grid md:grid-cols-3 gap-4 text-center">
+                        <div class="bg-sky-100 p-4 rounded"><strong>자율성 ⬆️</strong><br/>다양한 활동으로 선택권 제공</div>
+                        <div class="bg-teal-100 p-4 rounded"><strong>유능감 ⬆️</strong><br/>맞춤형 자료와 즉각적 피드백</div>
+                        <div class="bg-orange-100 p-4 rounded"><strong>관계성 ⬆️</strong><br/>교사의 시간 확보로 학생과 소통 증진</div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                     <h3 id="innovative-education" class="text-xl font-semibold mb-3">Brisk와 혁신적인 교육</h3>
+                    <p>Brisk는 AI를 활용한 대화형 수업을 통해 혁신적인 교수법을 교실에서 쉽게 실현하도록 돕습니다. 디지털 도구에 익숙한 학생들의 관심과 참여를 효과적으로 이끌어낼 수 있습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="time-management">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">⏳ 교사의 시간 관리와 번아웃 방지</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="space-y-4">
+                     <h3 id="teacher-time" class="text-xl font-semibold">반복 업무는 Brisk에게 맡기세요</h3>
+                     <p>수업 계획, 자료 제작, 피드백 등 시간이 많이 걸리는 반복 업무를 Brisk가 자동화하여 교사의 업무 부담을 획기적으로 줄여줍니다.</p>
+                     <p>이렇게 절약된 시간은 <strong class="text-orange-600">학생 개개인에게 더 집중하고, 새로운 교수법을 연구하며, 재충전하는 데</strong> 사용될 수 있습니다. 이는 교사의 번아웃을 예방하고 전문성을 향상시키는 선순환을 만듭니다.</p>
+                </div>
+                 <div class="bg-sky-50 border-l-4 border-sky-500 p-6 rounded-lg flex items-center">
+                    <div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-sky-500 float-left mr-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <h4 class="font-bold text-xl text-sky-800 mb-2">선생님은 더 중요한 일에 집중하세요</h4>
+                        <p class="text-sky-700">Brisk는 "배우지 않아도 될 만큼 직관적이다"라는 평가처럼, 새로운 기술 습득에 대한 부담 없이 선생님의 전문성 개발을 돕는 훌륭한 파트너입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="safety">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">🛡️ 안전성 및 신뢰성</h2>
+            <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                <h3 class="text-2xl font-bold mb-4">학생 정보를 소중히 여기는, 가장 안전한 AI</h3>
+                <p class="max-w-3xl mx-auto mb-6">Brisk는 학생 개인 식별 정보를 요구하지 않으며, COPPA, FERPA 등 주요 교육 및 개인 정보 보호 규정을 철저히 준수합니다. Common Sense Privacy Rating에서 <strong class="text-teal-600 text-2xl font-bold">최고 점수인 93%</strong>를 획득하여 안전성을 입증받았습니다.</p>
+                <div class="flex justify-center items-center space-x-8 text-slate-500">
+                    <span>✅ COPPA</span>
+                    <span>✅ FERPA</span>
+                    <span>✅ GDPR</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews">
+             <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">💬 실제 교사들의 사용 후기</h2>
+             <div class="grid md:grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col">
+                    <p class="flex-grow italic text-slate-700">"Brisk는 제 일을 훨씬 더 관리하기 쉽게 만들었고, <strong class='text-orange-600'>몇 초 만에 학생들에게 양질의 피드백</strong>을 줄 수 있게 해주었어요! 정말 생명의 은인이에요."</p>
+                    <p class="text-right font-semibold text-teal-700 mt-4">- Kelly Ann S.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col">
+                    <p class="flex-grow italic text-slate-700">"이 맞춤형 피드백은 터무니없이 정확하며 벌써 <strong class='text-orange-600'>몇 시간을 절약</strong>해 주었어요. 25년 교직 경력에서 본 최고의 제품입니다."</p>
+                    <p class="text-right font-semibold text-teal-700 mt-4">- Middle School Teacher</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md flex flex-col">
+                    <p class="flex-grow italic text-slate-700">"이 도구가 몇 년 전에 나왔다면 더 많은 교사들이 번아웃을 덜 느꼈을 거예요. <strong class='text-orange-600'>교사를 위해 교사가 만든 제품</strong>이라는 것을 알 수 있습니다."</p>
+                    <p class="text-right font-semibold text-teal-700 mt-4">- Chrissy M., M.Ed.</p>
+                </div>
+             </div>
+        </section>
+
+        <section id="prodigy">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">🤝 Brisk Teaching과 Prodigy의 시너지</h2>
+            <div class="bg-white p-8 rounded-xl shadow-md flex flex-col md:flex-row items-center gap-8">
+                <div class="md:w-1/3 text-center">
+                    <img src="https://www.prodigygame.com/main-en/blog/wp-content/uploads/2021/04/image-13.png" alt="Prodigy Logo" class="mx-auto h-20">
+                </div>
+                <div class="md:w-2/3">
+                    <p>게임 기반 학습 플랫폼인 <strong class="text-teal-600">Prodigy Math, Prodigy English</strong>와 Brisk를 함께 사용하면 학습 효과를 극대화할 수 있습니다. Brisk의 '콘텐츠 생성' 기능으로 Prodigy와 연계된 추가 연습 문제를 만들거나, '활동 부스트' 기능으로 관련 온라인 자료를 재미있는 게임처럼 만들어 학생들의 학습을 더욱 풍부하게 만들 수 있습니다.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="start">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">🚀 무료로 Brisk Teaching 시작하기</h2>
+            <div class="bg-gradient-to-r from-teal-500 to-cyan-600 text-white p-10 rounded-xl text-center shadow-2xl">
+                <h3 class="text-3xl font-extrabold mb-3">지금 바로 시작해보세요!</h3>
+                <p class="text-lg mb-6 max-w-2xl mx-auto">"몇 초 만에 설치하고 일 년 내내 감사할 것입니다."<br/>Brisk와 함께 가벼운 하루, 혁신적인 수업을 만들어가세요.</p>
+                <a href="https://www.briskteaching.com/" target="_blank" class="bg-white text-teal-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-slate-100 transition-colors duration-300 shadow-lg">
+                    Brisk 무료로 설치하기
+                </a>
+            </div>
+        </section>
+
+        <section id="qna">
+            <h2 class="text-3xl font-bold mt-16 mb-8 pb-3 border-b-4 border-teal-200">❓ 질의응답</h2>
+            <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                <p class="text-xl">궁금한 점이 있으시면 편하게 질문해주세요.</p>
+            </div>
+        </section>
+        
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- 네비게이션 메뉴 자동 생성 ---
+            const navMenu = document.getElementById('nav-menu');
+            const mobileNavMenu = document.getElementById('mobile-nav-menu');
+            const tocList = document.getElementById('toc-list');
+            
+            const sections = [
+                { id: 'intro', title: 'Brisk Teaching 소개', emoji: '👋' },
+                { id: 'why', title: '왜 Brisk Teaching인가?', emoji: '🤔' },
+                { id: 'features', title: '주요 AI 기능', emoji: '✨' },
+                { id: 'motivation', title: '학생 동기 부여', emoji: '🌱' },
+                { id: 'time-management', title: '시간 관리 및 번아웃 방지', emoji: '⏳' },
+                { id: 'safety', title: '안전성 및 신뢰성', emoji: '🛡️' },
+                { id: 'reviews', title: '교사 후기', emoji: '💬' },
+                { id: 'prodigy', title: 'Prodigy 시너지', emoji: '🤝' },
+                { id: 'start', title: '시작하기', emoji: '🚀' },
+                { id: 'qna', title: '질의응답', emoji: '❓' }
+            ];
+
+            // 네비게이션 바와 목차 리스트 생성
+            sections.forEach(section => {
+                // PC 네비게이션
+                const link = document.createElement('a');
+                link.href = `#${section.id}`;
+                link.innerHTML = `<span class="mr-1">${section.emoji}</span>${section.title}`;
+                link.className = 'px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:bg-teal-50 hover:text-teal-700 transition-colors';
+                navMenu.appendChild(link);
+
+                // 모바일 네비게이션
+                const mobileLink = document.createElement('a');
+                mobileLink.href = `#${section.id}`;
+                mobileLink.innerHTML = `<span class="mr-2">${section.emoji}</span>${section.title}`;
+                mobileLink.className = 'block px-4 py-2 text-base font-medium text-slate-700 hover:bg-teal-50 hover:text-teal-700 rounded-md';
+                mobileNavMenu.appendChild(mobileLink);
+                
+                // 본문 내 목차
+                const tocItem = document.createElement('li');
+                tocItem.innerHTML = `<a href="#${section.id}" class="flex items-center text-slate-700 hover:text-teal-600 transition-colors"><span class="text-teal-500 mr-3">✅</span>${section.title}</a>`;
+                tocList.appendChild(tocItem);
+            });
+
+            // --- 모바일 메뉴 토글 ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // 모바일 메뉴 링크 클릭 시 메뉴 닫기
+            mobileNavMenu.addEventListener('click', (e) => {
+                if (e.target.tagName === 'A') {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+
+
+            // --- 아코디언 기능 ---
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                const content = item.querySelector('.accordion-content');
+                const icon = item.querySelector('.accordion-icon');
+
+                header.addEventListener('click', () => {
+                    const isVisible = !content.classList.contains('hidden');
+                    
+                    // 다른 열린 아코디언 닫기 (선택사항)
+                    // accordionItems.forEach(otherItem => {
+                    //    if(otherItem !== item) {
+                    //        otherItem.querySelector('.accordion-content').classList.add('hidden');
+                    //        otherItem.querySelector('.accordion-icon').textContent = '+';
+                    //    }
+                    // });
+
+                    content.classList.toggle('hidden');
+                    icon.textContent = isVisible ? '+' : '-';
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
